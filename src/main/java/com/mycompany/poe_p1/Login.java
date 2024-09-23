@@ -17,7 +17,7 @@ public class Login {
      private String firstname;
      private String lastname;
     
-     
+     //Getters and setters
      public void setUserName(String i){
          username= i;
      }
@@ -46,23 +46,11 @@ public class Login {
      public String getLastName(){
          return lastname;
      }
-      public void display(){
-         //importing scanner
-     Scanner sc = new Scanner(System.in);
-     
-     //Prompting the user to enter details
-        System.out.println("Enter username:");
-        username = sc.next();
-        System.out.println("Enter password:");
-       password = sc.next();
-        System.out.println("Enter name:");
-        firstname = sc.next();
-        System.out.println("Enter last name:");
-        lastname = sc.next();
-     }
+      
      
     public boolean checkUserName(){
       if(username.contains("_")&& username.length()<= 5){
+          //return statements
         return true;
     }
         else{
@@ -84,13 +72,17 @@ public class Login {
         if(username.contains("_")&& username.length()<= 5){
            return "Username successfully captured";
     }
+        else if(password.matches(".*[^a-zA-Z0-9].*") && password.contains("1||2||3||4||5||6||7||8||9||0") && password.length() == 8 && password.matches(".*[A-Z].*")){
+           return "Password correctly formatted";
+       }
         else{
-            return "Username is not correctly formatted" ;
-        }   
+            return "Username and password incorrectly formatted" ;
+        }
+    
         
     }
     public boolean loginUser(){
-      if(username.equals("sli_nd")&& password.equals("Zitsi20@")){
+      if(username.equals("sli_")&& password.equals("Zitsi20@")){
           return true;
       }
       else{
@@ -98,11 +90,14 @@ public class Login {
       }
     }
     public String returnLoginStatus(){
-       if(username.equals("sli_nd") && password.equals("Zitsi20@")){
+       if(username.equals("sli_") && password.equals("Zitsi20@")){
            return "Welcome Silindzile Mathenjwa, it is great to see you again";
        }else{
            return "Username or password incorrect, please try again";
        } 
+    }
+    public void display(){
+       System.out.println(registerUser()+checkUserName()+ checkPasswordComplexity()+ loginUser() + returnLoginStatus());
     }
     
 }
