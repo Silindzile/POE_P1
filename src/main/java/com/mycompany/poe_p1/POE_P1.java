@@ -14,8 +14,9 @@ public class POE_P1 {
         
          //importing scanner
      Scanner sc = new Scanner(System.in);
+     Login sp = new Login();
      
-     //Prompting the user to enter details
+     //Prompting the user to enter details as they are being registered
         System.out.println("Enter username:");
         String username = sc.next();
         System.out.println("Enter password:");
@@ -25,18 +26,19 @@ public class POE_P1 {
         System.out.println("Enter last name:");
         String lastname = sc.next();
         
+          //After registering 
+        String registrationMessage = sp.registerUser(username, password, firstname, lastname);
+        System.out.println(registrationMessage);
         
-        Login sp = new Login();
-        sp.setUserName("sli_");
-        sp.setPassword("Zitsi20@");
-        sp.setFirstName("Silindzile");
-        sp.setLastName("Mathenjwa");
-        sp.checkPasswordComplexity();
-        sp.checkUserName();
-        sp.loginUser();
-        sp.registerUser();
-        sp.returnLoginStatus();
-        sp.display();
+        //Prompting the user to enter details as they login
+        System.out.println("Enter username:");
+        String newUsername = sc.next();
+        System.out.println("Enter password");
+        String newPassword = sc.next();
+        //Login execusion
+        boolean login = sp.loginUser(username, password);
+        System.out.println(sp.returnLoginStatus(login));
+        
         
 
      }

@@ -4,7 +4,7 @@
  */
 package com.mycompany.poe_p1;
 
-import java.util.Scanner;
+
 
 /**
  *
@@ -17,87 +17,50 @@ public class Login {
      private String firstname;
      private String lastname;
     
-     //Getters and setters
-     public void setUserName(String i){
-         username= i;
-     }
-     
-     public String getUserName(){
-         return username;
-     }
-      public void setPassword(String j){
-         password = j;
-     }
-     
-     public String getPassword(){
-         return password;
-     }
-      public void setFirstName(String k){
-         firstname= k;
-     }
-     
-     public String getFirstName(){
-         return firstname;
-     }
-      public void setLastName(String l){
-         lastname= l;
-     }
-     
-     public String getLastName(){
-         return lastname;
-     }
-      
-     
-    public boolean checkUserName(){
-      if(username.contains("_")&& username.length()<= 5){
-          //return statements
-        return true;
-    }
-        else{
-           return false;
-        }  
-       
-        
-    }
-    public boolean checkPasswordComplexity(){
-        if(password.length()== 8 && password.matches(".*[A-Z].*")&& password.contains("1||2||3||4||5||6||7||8||9||0")&& password.matches(".*[^a-zA-Z0-9].*") ){
-            return true;   
-        }
-        else{
-            return true;
-        }
-        
-    }
-    public String registerUser(){
-        if(username.contains("_")&& username.length()<= 5){
-           return "Username successfully captured";
-    }
-        else if(password.matches(".*[^a-zA-Z0-9].*") && password.contains("1||2||3||4||5||6||7||8||9||0") && password.length() == 8 && password.matches(".*[A-Z].*")){
-           return "Password correctly formatted";
-       }
-        else{
-            return "Username and password incorrectly formatted" ;
-        }
     
+    //Boolean used to check username
+    public boolean checkUserName(String username){
+     return username.contains("_")&& username.length()<= 5;
+    }
+    //Boolean used to check password
+    public boolean checkPasswordComplexity(String password){
+        return password.length()== 8 && password.matches(".*[A-Z].*")&& password.contains("1")||password.contains("2")||password.contains("3")||password.contains("4")||password.contains("5")||password.contains("6")||password.contains("7")||password.contains("8")||password.contains("9")||password.contains("0")&& password.matches(".*[^a-zA-Z0-9].*");
         
     }
-    public boolean loginUser(){
-      if(username.equals("sli_")&& password.equals("Zitsi20@")){
-          return true;
-      }
-      else{
-          return false;
-      }
+    //register user
+    public String registerUser(String username, String password, String firstname, String lastname){
+        if(!checkUserName(username)){
+           return "Username is not correctly formatted, please ensure that your username contains an underscore and is no more than 5 characters in length";
+    }else{
+            System.out.println("Username successfully captured");
+        }
+      
+        if(!checkPasswordComplexity(password)){
+            return "Password incorrectly formatted, please ensure that the password contains at least 8 characters, a capital letter, a number and a special character";
+        }
+        else{
+            System.out.println("Password successfully captured");
+        }
+        
+        this.username = username;
+        this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        
+        return "User has been registered successfully";
     }
-    public String returnLoginStatus(){
-       if(username.equals("sli_") && password.equals("Zitsi20@")){
-           return "Welcome Silindzile Mathenjwa, it is great to see you again";
+        
+    
+    public boolean loginUser(String username, String password){
+      return this.username != null && this.username.equals(username)&& this.password.equals(password);
+    }
+    public String returnLoginStatus(boolean successfullLogin){
+       if(this.username.equals(username)&& this.password.equals(password)){
+           return "Welcome " + firstname+" "+ lastname + ", it is great to see you again";
        }else{
            return "Username or password incorrect, please try again";
        } 
     }
-    public void display(){
-       System.out.println(registerUser()+checkUserName()+ checkPasswordComplexity()+ loginUser() + returnLoginStatus());
-    }
+    
     
 }
