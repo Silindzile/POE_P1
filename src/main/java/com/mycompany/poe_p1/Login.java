@@ -16,6 +16,7 @@ public class Login {
      private String password;
      private String firstname;
      private String lastname;
+     
     
     
     //Boolean used to check username
@@ -31,33 +32,38 @@ public class Login {
     public String registerUser(String username, String password, String firstname, String lastname){
         if(!checkUserName(username)){
            return "Username is not correctly formatted, please ensure that your username contains an underscore and is no more than 5 characters in length";
-    }else{
-            System.out.println("Username successfully captured");
-        }
-      
-        if(!checkPasswordComplexity(password)){
-            return "Password incorrectly formatted, please ensure that the password contains at least 8 characters, a capital letter, a number and a special character";
-        }
-        else{
-            System.out.println("Password successfully captured");
         }
         
+      
+       if(!checkPasswordComplexity(password)){
+            return "Password incorrectly formatted, please ensure that the password contains at least 8 characters, a capital letter, a number and a special character";
+        }
+        
+       
         this.username = username;
         this.password = password;
         this.firstname = firstname;
         this.lastname = lastname;
-        
+      
+       
         return "User has been registered successfully";
     }
+     
         
-    
+    //login user
     public boolean loginUser(String username, String password){
-      return this.username != null && this.username.equals(username)&& this.password.equals(password);
+      return this.username != null && this.username.equals(username)&&this.password !=null&& this.password.equals(password);
     }
-    public String returnLoginStatus(boolean successfullLogin){
-       if(this.username.equals(username)&& this.password.equals(password)){
+    
+    //method to return login status 
+    public String returnLoginStatus(){
+       if(username.equals(this.username)&& password.equals(this.password)){
            return "Welcome " + firstname+" "+ lastname + ", it is great to see you again";
-       }else{
+           
+       }
+       
+       else
+       {
            return "Username or password incorrect, please try again";
        } 
     }

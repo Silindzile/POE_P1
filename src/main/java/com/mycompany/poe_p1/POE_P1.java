@@ -17,10 +17,19 @@ public class POE_P1 {
      Login sp = new Login();
      
      //Prompting the user to enter details as they are being registered
+        System.out.println("REGISTER");
         System.out.println("Enter username:");
-        String username = sc.next();
+       String username = sc.next();
+       if (sp.checkUserName(username)){
+           System.out.println("Username correctly formatted");
+       }
+        
         System.out.println("Enter password:");
-       String password = sc.next();
+     String password = sc.next();
+       if (sp.checkPasswordComplexity(password)){
+           System.out.println("Password correctly formatted");
+       }
+       
         System.out.println("Enter name:");
         String firstname = sc.next();
         System.out.println("Enter last name:");
@@ -31,16 +40,16 @@ public class POE_P1 {
         System.out.println(registrationMessage);
         
         //Prompting the user to enter details as they login
+        System.out.println("LOGIN");
         System.out.println("Enter username:");
-        String newUsername = sc.next();
-        System.out.println("Enter password");
-        String newPassword = sc.next();
+         sc.next();
+        System.out.println("Enter password:");
+       sc.next();
         //Login execusion
-        boolean login = sp.loginUser(username, password);
-        System.out.println(sp.returnLoginStatus(login));
         
+        System.out.println(sp.returnLoginStatus());
         
-
+       
      }
      
 }
