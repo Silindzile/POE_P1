@@ -16,7 +16,8 @@ public class Login {
      private String password;
      private String firstname;
      private String lastname;
-     
+     private String newUsername;
+     private String newPassword;
     
     
     //Boolean used to check username
@@ -49,23 +50,27 @@ public class Login {
         return "User has been registered successfully";
     }
      
-        
+     
+    
     //login user
-    public boolean loginUser(String username, String password){
-      return this.username != null && this.username.equals(username)&&this.password !=null&& this.password.equals(password);
+    public boolean loginUser(String newUsername, String newPassword){
+        this.newUsername = newUsername;
+        this.newPassword = newPassword;
+        
+      return newUsername.equals(this.username) && newPassword.equals(this.password);
     }
     
     //method to return login status 
     public String returnLoginStatus(){
-       if(username.equals(this.username)&& password.equals(this.password)){
-           return "Welcome " + firstname+" "+ lastname + ", it is great to see you again";
+       if(loginUser(newUsername, newPassword )){
+         return "Welcome " + firstname +" "+ lastname + ", it is great to see you again"; 
            
-       }
-       
-       else
+       }else
        {
-           return "Username or password incorrect, please try again";
+           return "Username or passoword incorrectly formatted";
        } 
+        
+         
     }
     
     

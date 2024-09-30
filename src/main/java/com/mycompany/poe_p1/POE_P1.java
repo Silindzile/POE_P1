@@ -40,14 +40,17 @@ public class POE_P1 {
         System.out.println(registrationMessage);
         
         //Prompting the user to enter details as they login
+      
         System.out.println("LOGIN");
         System.out.println("Enter username:");
-         sc.next();
+         String newUsername = sc.next();
         System.out.println("Enter password:");
-       sc.next();
+       String newPassword = sc.next();
         //Login execusion
-        
-        System.out.println(sp.returnLoginStatus());
+      boolean login = sp.loginUser(newUsername, newPassword);
+        System.out.println(login);
+        String success = sp.returnLoginStatus();
+        System.out.println(success);
         
        
      }
