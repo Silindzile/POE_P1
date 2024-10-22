@@ -26,7 +26,7 @@ public class Login {
     }
     //Boolean used to check password
     public boolean checkPasswordComplexity(String password){
-        return password.length()== 8 && password.matches(".*[A-Z].*")&& password.contains("1")||password.contains("2")||password.contains("3")||password.contains("4")||password.contains("5")||password.contains("6")||password.contains("7")||password.contains("8")||password.contains("9")||password.contains("0")&& password.matches(".*[^a-zA-Z0-9].*");
+        return password.length()>= 8 && password.matches(".*[A-Z].*")&& password.contains("1")||password.contains("2")||password.contains("3")||password.contains("4")||password.contains("5")||password.contains("6")||password.contains("7")||password.contains("8")||password.contains("9")||password.contains("0")&& password.matches(".*[^a-zA-Z0-9].*");
         
     }
     //register user
@@ -72,6 +72,7 @@ public class Login {
         
          
     }
+    
     
     
 }
