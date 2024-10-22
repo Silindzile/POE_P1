@@ -81,7 +81,7 @@ public class POE_P1 {
             }
             String developerDetails = JOptionPane.showInputDialog(dialog, "Enter developer details: ");
             int taskDuration = Integer.parseInt(JOptionPane.showInputDialog(dialog, "Enter task duration in hours: "));
-            int taskNo = i=1;
+            int taskNo = i;
             Task task= new Task(taskName, developerDetails, taskNo, taskDescription ,  taskDuration);
            tasks[i] = task;
            String taskID = task.createTaskID();
