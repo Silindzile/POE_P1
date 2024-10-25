@@ -97,6 +97,7 @@ public class POE_P1 {
         String developerDetails = JOptionPane.showInputDialog(dialog, "Enter developer's details(First name and surname): ");
           int taskDuration = Integer.parseInt(JOptionPane.showInputDialog(dialog, "Enter task duration in hours: "));
           int taskNo = i;
+          
           //create task object and store in array
             Task task= new Task(taskName, taskDescription,  developerDetails,  taskDuration,  taskNo);
            tasks[i] = task; 
@@ -113,16 +114,16 @@ public class POE_P1 {
                case "3": taskStatus = "Doing";
                break;
            }
-           
-        
           JOptionPane.showMessageDialog(dialog, task.printTaskDetails()+ taskStatus, "Task Details:", JOptionPane.INFORMATION_MESSAGE);
-        //total hours
+        
+       //total hours
           totalHours += task.returnTotalHours();
         
            JOptionPane.showMessageDialog(dialog, "Total hours across all tasks: "+ totalHours);
                } 
                
         break;
+        //Option 2 which displays the a certain message
            case "2": JOptionPane.showMessageDialog(dialog, "Coming soon");
                     break; 
                
