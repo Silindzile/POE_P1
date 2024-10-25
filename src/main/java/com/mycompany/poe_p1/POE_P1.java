@@ -21,7 +21,11 @@ public class POE_P1 {
      dialog.setAlwaysOnTop(true);
      
      //Prompting the user to enter details as they are being registered
-       System.out.println("REGISTER");
+       System.out.println("====REGISTER====");
+        System.out.println("Enter first name:");
+        String firstname = sc.next();
+        System.out.println("Enter last name:");
+        String lastname = sc.next();
         System.out.println("Enter username:");
        String username = sc.next();
        if (sp.checkUserName(username)){
@@ -34,23 +38,20 @@ public class POE_P1 {
            System.out.println("Password correctly formatted");
        }
        
-        System.out.println("Enter name:");
-        String firstname = sc.next();
-        System.out.println("Enter last name:");
-        String lastname = sc.next();
+       
         
-          //After registering 
+          //calling the methods after a user registers
         String registrationMessage = sp.registerUser(username, password, firstname, lastname);
         System.out.println(registrationMessage);
         
         //Prompting the user to enter details as they login
-      
-        System.out.println("LOGIN");
+        System.out.println("====LOGIN====");
         System.out.println("Enter username:");
          String newUsername = sc.next();
         System.out.println("Enter password:");
        String newPassword = sc.next();
-        //Login execusion
+       
+        //Login method that logs the user in and returns registration message
       boolean login = sp.loginUser(newUsername, newPassword);
         System.out.println(login);
         String success = sp.returnLoginStatus();
@@ -58,35 +59,52 @@ public class POE_P1 {
         
         
            if(sp.loginUser(newUsername, newPassword)){ 
-            JOptionPane.showMessageDialog(dialog,"Welcome to EasyKanban", "EasyKanban", JOptionPane.INFORMATION_MESSAGE);
+               //Print message
+            JOptionPane.showMessageDialog(dialog,"Welcome to EasyKanban!", "EasyKanban", JOptionPane.INFORMATION_MESSAGE);
        int numTasks ;
         String num1;
+        
             while(true){
                String menuOption= JOptionPane.showInputDialog(dialog, "Select menu option: \n1.Add taks \n2.Show report \n3.Quit");
                switch (menuOption){
                    case "1":
                        //Add tasks logic
              
-        
+        //Prompting the user to enter the number of tasks
          num1 = JOptionPane.showInputDialog(dialog, "Enter the number of tasks to add:");
          numTasks = Integer.parseInt(num1);
+         
+         //Create array to store task objects
        Task[] tasks = new Task[numTasks];
-       int totalHours = 0;
        
+       int totalHours = 0;
+      
+       //Loop to input and create tasks
         for(int i = 0; i<numTasks; i++){
-            String taskName = JOptionPane.showInputDialog(dialog, "Enter task name: ");
-            String taskDescription = JOptionPane.showInputDialog(dialog, "Enter task description: ");
-            while(taskDescription.length()>50){
-                JOptionPane.showMessageDialog(dialog,"Please enter a task description of less than 50 characters");
-            }
-            String developerDetails = JOptionPane.showInputDialog(dialog, "Enter developer details: ");
-            int taskDuration = Integer.parseInt(JOptionPane.showInputDialog(dialog, "Enter task duration in hours: "));
-            int taskNo = i;
-            Task task= new Task(taskName, developerDetails, taskNo, taskDescription ,  taskDuration);
-           tasks[i] = task;
-           String taskID = task.createTaskID();
+          
+            //Prompt user to input task details
+         String taskName = JOptionPane.showInputDialog(dialog, "Enter task name: ");
+          String taskDescription = JOptionPane.showInputDialog(dialog, "Enter task description: ");
+          
+           //checking if task description is greater than 50 characters
+           while(taskDescription.length() >50){
+               JOptionPane.showMessageDialog(dialog, "Please enter task description of les than 50 characters");
+               taskDescription = JOptionPane.showInputDialog(dialog, "Enter task description: ");
+           }if (taskDescription.length() <=50){
+              JOptionPane.showMessageDialog(dialog, "Task description successfully captured");
+               
+           }
+        String developerDetails = JOptionPane.showInputDialog(dialog, "Enter developer's details(First name and surname): ");
+          int taskDuration = Integer.parseInt(JOptionPane.showInputDialog(dialog, "Enter task duration in hours: "));
+          int taskNo = i;
+          //create task object and store in array
+            Task task= new Task(taskName, taskDescription,  developerDetails,  taskDuration,  taskNo);
+           tasks[i] = task; 
+          String taskID = task.createTaskID();
+        JOptionPane.showMessageDialog(dialog, task.createTaskID(), ">>>>TASK ID<<<<", JOptionPane.INFORMATION_MESSAGE);
            
-           String taskStatus= JOptionPane.showInputDialog(dialog, "Select task status: \n1.To Do \n2.Done \n3.Doing");
+        //Input task status with options
+        String taskStatus= JOptionPane.showInputDialog(dialog, "Select task status: \n1.To Do \n2.Done \n3.Doing");
            switch(taskStatus){
                case "1": taskStatus = "To Do";
                break;
@@ -96,23 +114,32 @@ public class POE_P1 {
                break;
            }
            
-         
-          
-               }
+        
+          JOptionPane.showMessageDialog(dialog, task.printTaskDetails()+ taskStatus, "Task Details:", JOptionPane.INFORMATION_MESSAGE);
+        //total hours
+          totalHours += task.returnTotalHours();
+        
+           JOptionPane.showMessageDialog(dialog, "Total hours across all tasks: "+ totalHours);
+               } 
+               
         break;
            case "2": JOptionPane.showMessageDialog(dialog, "Coming soon");
-                    break;   
+                    break; 
+               
                    case "3": 
+                       //user exits the application
                        System.exit(0);
                        dialog.dispose();
                        break;
            }            
         
         
-    }
-    }  
+            }
     }
 }
+      
+} 
+
       
         
     
