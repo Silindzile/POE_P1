@@ -21,7 +21,7 @@ public class POE_P1 {
      dialog.setAlwaysOnTop(true);
      
      //Prompting the user to enter details as they are being registered
-      /* System.out.println("====REGISTER====");
+       System.out.println("====REGISTER====");
         System.out.println("Enter first name:");
         String firstname = sc.next();
         System.out.println("Enter last name:");
@@ -58,11 +58,16 @@ public class POE_P1 {
         System.out.println(success);
         
         
-           if(sp.loginUser(newUsername, newPassword)){ */
-               //Print message
+           if(sp.loginUser(newUsername, newPassword)){ 
+               //Print message if the user 
             JOptionPane.showMessageDialog(dialog,"Welcome to EasyKanban!", "EasyKanban", JOptionPane.INFORMATION_MESSAGE);
+            
+            //Declarations
        int numTasks ;
         String num1;
+        int totalHours = 0 ;
+        
+        //Importing scanner
         Task task= new Task();
         
             while(true){
@@ -78,8 +83,6 @@ public class POE_P1 {
          //Create array to store task objects
        Task[] tasks = new Task[numTasks];
        
-       int totalHours = 0;
-      
        //Loop to input and create tasks
         for(int i = 0; i<numTasks; i++){
           
@@ -92,19 +95,24 @@ public class POE_P1 {
                JOptionPane.showMessageDialog(dialog, "Please enter task description of les than 50 characters");
                taskDescription = JOptionPane.showInputDialog(dialog, "Enter task description: ");
            }if (task.checkTaskDescription(taskDescription)){
+               //Return message
               JOptionPane.showMessageDialog(dialog, "Task description successfully captured");
                
            }
-        String developerDetails = JOptionPane.showInputDialog(dialog, "Enter developer's details(First name and surname): ");
-        int taskNo = i;
-        JOptionPane.showMessageDialog(dialog, task.createTaskID( taskName, taskNo, developerDetails), ">>>>TASK ID<<<<", JOptionPane.INFORMATION_MESSAGE);
-          
-          int taskDuration = Integer.parseInt(JOptionPane.showInputDialog(dialog, "Enter task duration in hours: "));
-          
            
-          //create task object and store in array
-            
-           tasks[i] = task; 
+           //Pompt user to enter developer's details
+        String developerDetails = JOptionPane.showInputDialog(dialog, "Enter developer's details(First name and surname): ");
+        //create task object and store in array
+       tasks[i] = task; 
+          int taskNo = i;
+       
+       
+         //Prompting the user to enter task duration
+          int taskDuration = Integer.parseInt(JOptionPane.showInputDialog(dialog, "Enter task duration in hours: "));
+          task.setTaskDuration(taskDuration);
+          
+           //print the ask ID
+         JOptionPane.showMessageDialog(dialog, task.createTaskID( taskName, taskNo, developerDetails), ">>>>TASK ID<<<<", JOptionPane.INFORMATION_MESSAGE);
           
         //Input task status with options
         String taskStatus= JOptionPane.showInputDialog(dialog, "Select task status: \n1.To Do \n2.Done \n3.Doing");
@@ -116,13 +124,15 @@ public class POE_P1 {
                case "3": taskStatus = "Doing";
                break;
            }
-          JOptionPane.showMessageDialog(dialog, task.printTaskDetails(taskName,  taskNo, taskDescription,  developerDetails,  taskDuration)+ taskStatus, "Task Details:", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(dialog, task.printTaskDetails(taskName,  taskNo, taskDescription,  developerDetails,  taskDuration)+ taskStatus, "Task Details:", JOptionPane.INFORMATION_MESSAGE);
+           
+               //Returning total hours
+   totalHours += task.returnTotalHours() ;
+        }
         
-       //total hours
-          totalHours += task.returnTotalHours(taskDuration);
-        
-           JOptionPane.showMessageDialog(dialog, "Total hours across all tasks: "+ totalHours);
-               } 
+       //Printing the total hours
+        JOptionPane.showMessageDialog(dialog, "Total hours across all tasks: "+ totalHours );
+               
                
         break;
         //Option 2 which displays the a certain message
@@ -138,10 +148,10 @@ public class POE_P1 {
         
         
             }
-    
+           }
 }
-      
-} 
+}    
+
 
       
         

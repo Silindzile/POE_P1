@@ -1,15 +1,15 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
  */
 package com.mycompany.poe_p1;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -19,78 +19,115 @@ public class TaskTest {
     
     public TaskTest() {
     }
+
+    @org.junit.BeforeClass
+    public static void setUpClass() throws Exception {
+    }
+
+    @org.junit.AfterClass
+    public static void tearDownClass() throws Exception {
+    }
+
+    @org.junit.Before
+    public void setUp() throws Exception {
+    }
+
+    @org.junit.After
+    public void tearDown() throws Exception {
+    }
     
-    @BeforeAll
+    /*@BeforeClass
     public static void setUpClass() {
     }
     
-    @AfterAll
+    @AfterClass
     public static void tearDownClass() {
     }
     
-    @BeforeEach
+    @Before
     public void setUp() {
     }
     
-    @AfterEach
+    @After
     public void tearDown() {
-    }
+    */
 
     /**
      * Test of checkTaskDescription method, of class Task.
      */
-    @Test
+    @org.junit.Test
     public void testCheckTaskDescription() {
         System.out.println("checkTaskDescription");
         String taskDescription = "";
-        Task instance = null;
+        Task instance = new Task();
         boolean expResult = false;
         boolean result = instance.checkTaskDescription(taskDescription);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
      * Test of createTaskID method, of class Task.
      */
-    @Test
+    @org.junit.Test
     public void testCreateTaskID() {
         System.out.println("createTaskID");
-        Task instance = null;
+        String taskName = "";
+        int taskNo = 0;
+        String developerDetails = "";
+        Task instance = new Task();
         String expResult = "";
-        String result = instance.createTaskID();
+        String result = instance.createTaskID(taskName, taskNo, developerDetails);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setTaskDuration method, of class Task.
+     */
+    @org.junit.Test
+    public void testSetTaskDuration() {
+        System.out.println("setTaskDuration");
+        int taskDuration = 0;
+        Task instance = new Task();
+        instance.setTaskDuration(taskDuration);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
      * Test of printTaskDetails method, of class Task.
      */
-    @Test
+    @org.junit.Test
     public void testPrintTaskDetails() {
         System.out.println("printTaskDetails");
-        Task instance = null;
+        String taskName = "";
+        int taskNo = 0;
+        String taskDescription = "";
+        String developerDetails = "";
+        int taskDuration = 0;
+        Task instance = new Task();
         String expResult = "";
-        String result = instance.printTaskDetails();
+        String result = instance.printTaskDetails(taskName, taskNo, taskDescription, developerDetails, taskDuration);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
      * Test of returnTotalHours method, of class Task.
      */
-    @Test
+    @org.junit.Test
     public void testReturnTotalHours() {
         System.out.println("returnTotalHours");
-        Task instance = null;
+        Task instance = new Task();
         int expResult = 0;
         int result = instance.returnTotalHours();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
     
 }

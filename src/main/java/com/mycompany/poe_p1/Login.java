@@ -29,7 +29,7 @@ public class Login {
         return password.length()>= 8 && password.matches(".*[A-Z].*")&& password.contains("1")||password.contains("2")||password.contains("3")||password.contains("4")||password.contains("5")||password.contains("6")||password.contains("7")||password.contains("8")||password.contains("9")||password.contains("0")&& password.matches(".*[^a-zA-Z0-9].*");
         
     }
-    //register user
+    //Method that registers the user
     public String registerUser(String username, String password, String firstname, String lastname){
         if(!checkUserName(username)){
            return "Username is not correctly formatted, please ensure that your username contains an underscore and is no more than 5 characters in length";
@@ -40,7 +40,7 @@ public class Login {
             return "Password incorrectly formatted, please ensure that the password contains at least 8 characters, a capital letter, a number and a special character";
         }
         
-       
+       //registering the user's information
         this.username = username;
         this.password = password;
         this.firstname = firstname;
@@ -52,7 +52,7 @@ public class Login {
      
      
     
-    //login user
+    //method that logs in the user
     public boolean loginUser(String newUsername, String newPassword){
         this.newUsername = newUsername;
         this.newPassword = newPassword;
@@ -67,6 +67,7 @@ public class Login {
            
        }else
        {
+           //return message if the user entered wrong details
            return "Username or passoword incorrectly formatted";
        } 
         
