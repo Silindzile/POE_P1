@@ -29,6 +29,7 @@ public class POE_P1 {
         System.out.println("Enter username:");
        String username = sc.next();
        if (sp.checkUserName(username)){
+           //return message if user has entered a correct username
            System.out.println("Username correctly formatted");
        }
         
@@ -39,7 +40,6 @@ public class POE_P1 {
        }
        
        
-        
           //calling the methods after a user registers
         String registrationMessage = sp.registerUser(username, password, firstname, lastname);
         System.out.println(registrationMessage);
@@ -59,7 +59,7 @@ public class POE_P1 {
         
         
            if(sp.loginUser(newUsername, newPassword)){ 
-               //Print message if the user 
+               //Print message if the user has logged in successfuly
             JOptionPane.showMessageDialog(dialog,"Welcome to EasyKanban!", "EasyKanban", JOptionPane.INFORMATION_MESSAGE);
             
             //Declarations
@@ -124,14 +124,17 @@ public class POE_P1 {
                case "3": taskStatus = "Doing";
                break;
            }
-        JOptionPane.showMessageDialog(dialog, task.printTaskDetails(taskName,  taskNo, taskDescription,  developerDetails,  taskDuration)+ taskStatus, "Task Details:", JOptionPane.INFORMATION_MESSAGE);
+           task.setTaskStatus(taskStatus);
+           
+           //printing the task details
+        JOptionPane.showMessageDialog(dialog, task.printTaskDetails(taskName,  taskNo, taskDescription,  developerDetails,  taskDuration), "Task Details:", JOptionPane.INFORMATION_MESSAGE);
            
                //Returning total hours
    totalHours += task.returnTotalHours() ;
         }
         
        //Printing the total hours
-        JOptionPane.showMessageDialog(dialog, "Total hours across all tasks: "+ totalHours );
+        JOptionPane.showMessageDialog(dialog, "Total hours across all tasks: "+ totalHours + " hours" );
                
                
         break;

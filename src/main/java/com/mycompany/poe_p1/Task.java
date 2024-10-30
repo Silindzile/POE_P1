@@ -31,7 +31,11 @@ public class Task {
         
         //return message
         return taskName.substring(0, 2).toUpperCase() + ":" + taskNo + ":" + developerDetails.substring(developerDetails.length() - 3).toUpperCase();
-        
+    }
+    
+    //setter for task Status
+    public void setTaskStatus(String taskStatus){
+        this.taskStatus = taskStatus;
     }
    
     //setter for task duration
@@ -39,11 +43,11 @@ public class Task {
       this.taskDuration = taskDuration;  
     }
     
-    //Method to return task full details of each task
+    //Method to return full details of each task
     public String printTaskDetails(String taskName, int taskNo, String taskDescription, String developerDetails, int taskDuration){
          
         //return message
-        return "Task Name: "+taskName + "\n"+ "Task Number: " + taskNo+"\n"+ "Task Description: "+ taskDescription +"\n" +"Developer's Details: "+ developerDetails + "\n"+ "Task Duration: " + taskDuration + "\n" + "Task ID: " + createTaskID( taskName, taskNo, developerDetails )+"\n"+"Task Status: "  ; 
+        return "Task Status: " + taskStatus+ "\n"+ "Developer's Details: "+ developerDetails +"\n"+ "Task Number: " + taskNo+"\n" +  "Task Name: "+taskName + "\n"+ "Task Description: "+ taskDescription +"\n" +  "Task ID: " + createTaskID( taskName, taskNo, developerDetails )+"\n"+  "Task Duration: " + taskDuration + " hours"  ; 
     }
     
     //Method that returns the total hours spent on the all the tasks
