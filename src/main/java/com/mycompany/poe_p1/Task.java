@@ -44,7 +44,7 @@ public class Task {
     }
     
     //Method to return full details of each task
-    public String printTaskDetails(String taskName, int taskNo, String taskDescription, String developerDetails, int taskDuration){
+    public String printTaskDetails(){
          
         //return message
         return "Task Status: " + taskStatus+ "\n"+ "Developer's Details: "+ developerDetails +"\n"+ "Task Number: " + taskNo+"\n" +  "Task Name: "+taskName + "\n"+ "Task Description: "+ taskDescription +"\n" +  "Task ID: " + createTaskID( taskName, taskNo, developerDetails )+"\n"+  "Task Duration: " + taskDuration + " hours"  ; 

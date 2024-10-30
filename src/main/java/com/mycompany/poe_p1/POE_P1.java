@@ -127,7 +127,7 @@ public class POE_P1 {
            task.setTaskStatus(taskStatus);
            
            //printing the task details
-        JOptionPane.showMessageDialog(dialog, task.printTaskDetails(taskName,  taskNo, taskDescription,  developerDetails,  taskDuration), "Task Details:", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(dialog, task.printTaskDetails(), "Task Details:", JOptionPane.INFORMATION_MESSAGE);
            
                //Returning total hours
    totalHours += task.returnTotalHours() ;
