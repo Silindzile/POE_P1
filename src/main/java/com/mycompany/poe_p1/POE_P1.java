@@ -66,12 +66,17 @@ public class POE_P1 {
        int numTasks ;
         String num1;
         int totalHours = 0 ;
-        
+         ArrayList<String> developer = new ArrayList<>();
+        ArrayList<String> taskNames = new ArrayList<>();
+        ArrayList<String> TaskID = new ArrayList<>();
+        ArrayList<Integer> TaskDuration = new ArrayList<>();
+        ArrayList<String> TaskStatus = new ArrayList<>();
+
         //Importing scanner
         Task task= new Task();
         
             while(true){
-               String menuOption= JOptionPane.showInputDialog(dialog, "Select menu option: \n1.Add taks \n2.Show report \n3.Quit");
+               String menuOption= JOptionPane.showInputDialog(dialog, "Select menu option: \n1.Add taks \n2.Tasks with status 'Done' \n3.Task with longest duration \n4.Search task by name \n5.Search tasks by developer \n6.Delete task by name \n7.Show report \n8.Quit");
                switch (menuOption){
                    case "1":
                        //Add tasks logic
@@ -109,7 +114,7 @@ public class POE_P1 {
        
          //Prompting the user to enter task duration
           int taskDuration = Integer.parseInt(JOptionPane.showInputDialog(dialog, "Enter task duration in hours: "));
-          task.setTaskDuration(taskDuration);
+          task.setTaskDuration( taskDuration);
           
            //print the ask ID
          JOptionPane.showMessageDialog(dialog, task.createTaskID( taskName, taskNo, developerDetails), ">>>>TASK ID<<<<", JOptionPane.INFORMATION_MESSAGE);
@@ -131,29 +136,120 @@ public class POE_P1 {
            
                //Returning total hours
    totalHours += task.returnTotalHours() ;
+    // Populate arrays
+                        developer.add(developerDetails);
+                        taskNames.add(taskName);
+                        TaskID.add(task.createTaskID(taskName, taskNo, developerDetails));
+                        TaskDuration.add(taskDuration);
+                        TaskStatus.add(taskStatus);
         }
         
        //Printing the total hours
         JOptionPane.showMessageDialog(dialog, "Total hours across all tasks: "+ totalHours + " hours" );
+           
+           
+             break;
+                    case "2": // Tasks with status "Done"
+                            StringBuilder doneTasks = new StringBuilder("Tasks with status 'Done':\n");
+                            for (int i = 0; i < TaskStatus.size(); i++) {
+                                if (TaskStatus.get(i).equals("Done")) {
+                                    doneTasks.append("Developer: ").append(developer.get(i))
+                                             .append("\n Task Name: ").append(taskNames.get(i))
+                                             .append("\n Duration: ").append(TaskDuration.get(i)).append(" hours\n");
+                                }
+                            }
+                            JOptionPane.showMessageDialog(dialog, doneTasks.toString());
+                            break;
+                            case "3": // Task with longest duration
+                            int maxDuration = 0;
+                            int maxIndex = -1;
+                            for (int i = 0; i < TaskDuration.size(); i++) {
+                                if (TaskDuration.get(i) > maxDuration) {
+                                    maxDuration = TaskDuration.get(i);
+                                    maxIndex = i;
+                                }
+                            }
+                            String longestTaskReport = "Developer: " + developer.get(maxIndex) + 
+                                                       "\nTask Name: " + taskNames.get(maxIndex) + 
+                                                       "\nDuration: " + TaskDuration.get(maxIndex) + " hours";
+                            JOptionPane.showMessageDialog(dialog, longestTaskReport);
+                            break;
+                    case "4": // Search task by name
+                            String searchTaskName = JOptionPane.showInputDialog(dialog, "Enter task name to search:");
+                            String taskReport = "Task not found.";
+                            for (int i = 0; i < taskNames.size(); i++) {
+                                if (taskNames.get(i).equalsIgnoreCase(searchTaskName)) {
+                                    taskReport = "Task Name: " + taskNames.get(i) + 
+                                                  ", Developer: " + developer.get(i) + 
+                                                  ", Status: " + TaskStatus.get(i);
+                                }
+                            }
+                                JOptionPane.showMessageDialog(dialog, taskReport);
+                            
+                                    break;
+                        case "5": // Search tasks by developer
+                            String searchDeveloper = JOptionPane.showInputDialog(dialog, "Enter developer's name to search:");
+                            StringBuilder developerTasks = new StringBuilder("Tasks for developer " + searchDeveloper + ":\n");
+                            for (int i = 0; i < developer.size(); i++) {
+                                if (developer.get(i).equalsIgnoreCase(searchDeveloper)) {
+                                    developerTasks.append("Task Name: ").append(taskNames.get(i))
+                                                  .append(", Status: ").append(TaskStatus.get(i)).append("\n");
+                                }
+                            }
+                            JOptionPane.showMessageDialog(dialog, developerTasks.toString());
+                            break;        
+                            
+                            
                
-               
-        break;
-        //Option 2 which displays the a certain message
-           case "2": JOptionPane.showMessageDialog(dialog, "Coming soon");
-                    break; 
-               
-                   case "3": 
+                        case "6": // Delete task by name
+                            String deleteTaskName = JOptionPane.showInputDialog(dialog, "Enter task name to delete:");
+                            int indexToDelete = -1;
+                            for (int i = 0; i < taskNames.size(); i++) {
+                                if (taskNames.get(i).equalsIgnoreCase(deleteTaskName)) {
+                                    indexToDelete = i;
+                                    break;
+                                }
+                            }
+                            if (indexToDelete != -1) {
+                                developer.remove(indexToDelete);
+                                taskNames.remove(indexToDelete);
+                                TaskID.remove(indexToDelete);
+                                TaskDuration.remove(indexToDelete);
+                                TaskStatus.remove(indexToDelete);
+                                JOptionPane.showMessageDialog(dialog, "Task deleted successfully.");
+                            } else {
+                                JOptionPane.showMessageDialog(dialog, "Task not found.");
+                            }
+                            break;
+                      case "7": // Show report
+                            StringBuilder allTasks = new StringBuilder("All tasks:\n");
+                            for (int i = 0; i < taskNames.size(); i++) {
+                                allTasks.append("Task Name: ").append(taskNames.get(i))
+                                        .append(", Developer: ").append(developer.get(i))
+                                        .append(", Status: ").append(TaskStatus.get(i))
+                                        .append(", Duration: ").append(TaskDuration.get(i)).append(" hours\n");
+                            }
+                            JOptionPane.showMessageDialog(dialog, allTasks.toString());
+                            break;      
+                            
+                   case "8": 
                        //user exits the application
                        System.exit(0);
                        dialog.dispose();
                        break;
-           }            
-        
-        
+               }
+               
+            } 
+         
             }
-           }
-}
-}    
+            }
+   
+    }
+
+
+
+
+
 
 
       
