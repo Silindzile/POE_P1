@@ -18,9 +18,6 @@ public class Task {
     private String taskStatus;
     
      
-     
-   
-  
     //Method to check task description if it has 50 or less characters
     public boolean checkTaskDescription(String taskDescription){
          this.taskDescription = taskDescription;
@@ -58,8 +55,5 @@ public class Task {
     public int returnTotalHours(){
       return taskDuration;
     }
-    
-
-    
    
 }

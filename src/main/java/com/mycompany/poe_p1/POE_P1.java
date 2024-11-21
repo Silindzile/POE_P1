@@ -39,7 +39,6 @@ public class POE_P1 {
            System.out.println("Password correctly formatted");
        }
        
-       
           //calling the methods after a user registers
         String registrationMessage = sp.registerUser(username, password, firstname, lastname);
         System.out.println(registrationMessage);
@@ -56,7 +55,6 @@ public class POE_P1 {
         System.out.println(login);
         String success = sp.returnLoginStatus();
         System.out.println(success);
-        
         
            if(sp.loginUser(newUsername, newPassword)){ 
                //Print message if the user has logged in successfuly
@@ -113,7 +111,6 @@ public class POE_P1 {
        tasks[i] = task; 
           int taskNo = i;
        
-       
          //Prompting the user to enter task duration
           int taskDuration = Integer.parseInt(JOptionPane.showInputDialog(dialog, "Enter task duration in hours: "));
           task.setTaskDuration( taskDuration);
@@ -148,8 +145,7 @@ public class POE_P1 {
         
        //Printing the total hours
         JOptionPane.showMessageDialog(dialog, "Total hours across all tasks: "+ totalHours + " hours" );
-           
-           
+          
              break;
                     case "2": // Tasks with status "Done"
                             StringBuilder doneTasks = new StringBuilder("Tasks with status 'Done':\n");
@@ -237,13 +233,10 @@ public class POE_P1 {
                        System.exit(0);
                        dialog.dispose();
                        break;
-               }
-               
+               }   
             } 
-         
             }
             }
-   
     }
 
 
