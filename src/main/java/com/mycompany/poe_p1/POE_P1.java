@@ -66,6 +66,8 @@ public class POE_P1 {
        int numTasks ;
         String num1;
         int totalHours = 0 ;
+        
+        //Declaring arrays to store task data
          ArrayList<String> developer = new ArrayList<>();
         ArrayList<String> taskNames = new ArrayList<>();
         ArrayList<String> TaskID = new ArrayList<>();
@@ -137,11 +139,11 @@ public class POE_P1 {
                //Returning total hours
    totalHours += task.returnTotalHours() ;
     // Populate arrays
-                        developer.add(developerDetails);
-                        taskNames.add(taskName);
-                        TaskID.add(task.createTaskID(taskName, taskNo, developerDetails));
-                        TaskDuration.add(taskDuration);
-                        TaskStatus.add(taskStatus);
+     developer.add(developerDetails);
+     taskNames.add(taskName);
+     TaskID.add(task.createTaskID(taskName, taskNo, developerDetails));
+      TaskDuration.add(taskDuration);
+      TaskStatus.add(taskStatus);                   
         }
         
        //Printing the total hours
@@ -169,8 +171,7 @@ public class POE_P1 {
                                     maxIndex = i;
                                 }
                             }
-                            String longestTaskReport = "Developer: " + developer.get(maxIndex) + 
-                                                       "\nTask Name: " + taskNames.get(maxIndex) + 
+                            String longestTaskReport = "Developer: " + developer.get(maxIndex) +
                                                        "\nDuration: " + TaskDuration.get(maxIndex) + " hours";
                             JOptionPane.showMessageDialog(dialog, longestTaskReport);
                             break;
@@ -180,8 +181,8 @@ public class POE_P1 {
                             for (int i = 0; i < taskNames.size(); i++) {
                                 if (taskNames.get(i).equalsIgnoreCase(searchTaskName)) {
                                     taskReport = "Task Name: " + taskNames.get(i) + 
-                                                  ", Developer: " + developer.get(i) + 
-                                                  ", Status: " + TaskStatus.get(i);
+                                                  "\nDeveloper: " + developer.get(i) + 
+                                                  "\nStatus: " + TaskStatus.get(i);
                                 }
                             }
                                 JOptionPane.showMessageDialog(dialog, taskReport);
@@ -193,14 +194,12 @@ public class POE_P1 {
                             for (int i = 0; i < developer.size(); i++) {
                                 if (developer.get(i).equalsIgnoreCase(searchDeveloper)) {
                                     developerTasks.append("Task Name: ").append(taskNames.get(i))
-                                                  .append(", Status: ").append(TaskStatus.get(i)).append("\n");
+                                                  .append("\nStatus: ").append(TaskStatus.get(i)).append("\n");
                                 }
                             }
                             JOptionPane.showMessageDialog(dialog, developerTasks.toString());
                             break;        
-                            
-                            
-               
+                        
                         case "6": // Delete task by name
                             String deleteTaskName = JOptionPane.showInputDialog(dialog, "Enter task name to delete:");
                             int indexToDelete = -1;
@@ -226,6 +225,7 @@ public class POE_P1 {
                             for (int i = 0; i < taskNames.size(); i++) {
                                 allTasks.append("Task Name: ").append(taskNames.get(i))
                                         .append(", Developer: ").append(developer.get(i))
+                                        .append(", Task ID: ").append(TaskID.get(i))
                                         .append(", Status: ").append(TaskStatus.get(i))
                                         .append(", Duration: ").append(TaskDuration.get(i)).append(" hours\n");
                             }
